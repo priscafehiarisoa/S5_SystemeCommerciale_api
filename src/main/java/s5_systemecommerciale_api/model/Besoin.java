@@ -21,18 +21,18 @@ public class Besoin {
     }
 
     public Besoin(Service service, double quantite, String motif, int etat) {
-        this.service = service;
-        this.quantite = quantite;
-        this.motif = motif;
-        this.etat = etat;
+        setService(service);
+        setQuantite(quantite);
+        setMotif(motif);
+        setEtat(etat);
     }
 
     public Besoin(Long id, Service service, double quantite, String motif, int etat) {
-        this.id = id;
-        this.service = service;
-        this.quantite = quantite;
-        this.motif = motif;
-        this.etat = etat;
+        setId(id);
+        setService(service);
+        setQuantite(quantite);
+        setMotif(motif);
+        setEtat(etat);
     }
 
     public Long getId() {
