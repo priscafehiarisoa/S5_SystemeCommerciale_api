@@ -2,6 +2,8 @@ package s5_systemecommerciale_api.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Besoin {
     @Id
@@ -15,24 +17,26 @@ public class Besoin {
     Service service;
     double quantite;
     String motif;
-    int etat;
+    @OneToMany(mappedBy = "besoin", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<Besoin_produit> besoinProduits;
+    int etat=0;
 
     public Besoin() {
     }
 
     public Besoin(Service service, double quantite, String motif, int etat) {
-        this.service = service;
-        this.quantite = quantite;
-        this.motif = motif;
-        this.etat = etat;
+        setService(service);
+        setMotif(motif);
+        setQuantite(quantite);
+        setEtat(etat);
     }
 
     public Besoin(Long id, Service service, double quantite, String motif, int etat) {
-        this.id = id;
-        this.service = service;
-        this.quantite = quantite;
-        this.motif = motif;
-        this.etat = etat;
+        setId(id);
+        setService(service);
+        setMotif(motif);
+        setQuantite(quantite);
+        setEtat(etat);
     }
 
     public Long getId() {
@@ -69,6 +73,14 @@ public class Besoin {
 
     public int getEtat() {
         return etat;
+    }
+
+    public List<Besoin_produit> getBesoinProduits() {
+        return besoinProduits;
+    }
+
+    public void setBesoinProduits(List<Besoin_produit> besoinProduits) {
+        this.besoinProduits = besoinProduits;
     }
 
     public void setEtat(int etat) {
