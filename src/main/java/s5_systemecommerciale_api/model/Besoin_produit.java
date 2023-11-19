@@ -23,16 +23,16 @@ public class Besoin_produit {
     }
 
     public Besoin_produit(double quantite, Besoin besoin, Produit produit) {
-        this.quantite = quantite;
-        this.besoin = besoin;
-        this.produit = produit;
+        setQuantite(quantite);
+        setBesoin(besoin);
+        setProduit(produit);
     }
 
     public Besoin_produit(Long id, double quantite, Besoin besoin, Produit produit) {
-        this.id = id;
-        this.quantite = quantite;
-        this.besoin = besoin;
-        this.produit = produit;
+        setId(id);
+        setQuantite(quantite);
+        setBesoin(besoin);
+        setProduit(produit);
     }
 
     public Long getId() {

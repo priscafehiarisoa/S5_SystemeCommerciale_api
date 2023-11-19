@@ -42,9 +42,12 @@ public class Produit {
     }
 
     public Produit(Long id, String nomProduit, int etat) {
-        this.id = id;
-        this.nomProduit = nomProduit;
-        this.etat = etat;
+        setId(id);
+        setNomProduit(nomProduit);
+        setEtat(etat);
+    }
+    public Produit(String nomProduit){
+        setNomProduit(nomProduit);
     }
 
     public Produit() {

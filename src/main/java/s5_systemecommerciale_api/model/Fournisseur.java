@@ -3,6 +3,8 @@ package s5_systemecommerciale_api.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 public class Fournisseur {
     @Id
@@ -17,21 +19,25 @@ public class Fournisseur {
     String nom_responsable;
     double prix_livraison;
 
+    @OneToMany
+
+    List<Produit_Fournisseur> produitFournisseurs;
+
     public Fournisseur(Long id, String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison) {
-        this.id = id;
-        this.nom_fournisseur = nom_fournisseur;
-        Adresse = adresse;
-        this.telephone = telephone;
-        this.nom_responsable = nom_responsable;
-        this.prix_livraison = prix_livraison;
+        setId(id);
+        setNom_fournisseur(nom_fournisseur);
+        setAdresse(adresse);
+        setTelephone(telephone);
+        setNom_responsable(nom_responsable);
+        setPrix_livraison(prix_livraison);
     }
 
     public Fournisseur(String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison) {
-        this.nom_fournisseur = nom_fournisseur;
-        Adresse = adresse;
-        this.telephone = telephone;
-        this.nom_responsable = nom_responsable;
-        this.prix_livraison = prix_livraison;
+        setNom_fournisseur(nom_fournisseur);
+        setAdresse(adresse);
+        setTelephone(telephone);
+        setNom_responsable(nom_responsable);
+        setPrix_livraison(prix_livraison);
     }
 
     public Fournisseur() {
