@@ -121,14 +121,13 @@ public class Besoin {
 
     @Override
     public String toString() {
-        Hibernate.initialize(besoinProduits);
+//        Hibernate.initialize(besoinProduits);
 
         return "Besoin{" +
                 "id=" + id +
                 ",\n service=" + service.toString() +
                 ",\n quantite=" + quantite +
                 ",\n motif='" + motif + '\'' +
-                ",\n besoinProduits =" + null +
                 ",\n etat=" + etat +
                 '}';
     }

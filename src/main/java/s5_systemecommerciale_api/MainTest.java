@@ -3,6 +3,7 @@ package s5_systemecommerciale_api;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import s5_systemecommerciale_api.model.Article;
 import s5_systemecommerciale_api.model.Besoin;
 import s5_systemecommerciale_api.model.Produit_Fournisseur;
 import s5_systemecommerciale_api.model.Proforma;
@@ -18,13 +19,14 @@ public class MainTest {
     @Bean
     CommandLineRunner commandLineRunner(BesoinRepository besoinRepository, Produit_fournisseurService produitFournisseurService, ProformaService proformaService){
         return args -> {
-            Optional<Besoin> besoin= besoinRepository.findById(8L);
+            Optional<Besoin> besoin= besoinRepository.findById(9L);
             Proforma prof=new Proforma();
             if (besoin.isPresent()) {
-                for (int i = 0; i < besoin.get().getBesoinProduits().size(); i++) {
-                    System.out.println(i);
+                System.out.println("**************");
+                List<List<Article> >liste=proformaService.listeArticlesSelonBesoin(besoin.get());
+                for (int i = 0; i < liste.size(); i++) {
+                    System.out.println(liste.get(i).toString());
                 }
-               prof=proformaService.getProforma(besoin.get());
             }
             System.out.println(prof.toString());
         };
