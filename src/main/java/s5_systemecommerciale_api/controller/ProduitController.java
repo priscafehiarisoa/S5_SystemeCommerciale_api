@@ -8,7 +8,7 @@ import s5_systemecommerciale_api.service.ProduitService;
 
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin
 
 @RestController
 @RequestMapping("/produit")
@@ -33,6 +33,7 @@ public class ProduitController {
 
     @PostMapping
     public void insert(@RequestBody Produit produit){
+
         produitService.addNewProduit(produit);
     }
 

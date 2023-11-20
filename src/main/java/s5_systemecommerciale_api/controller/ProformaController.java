@@ -26,21 +26,21 @@ public class ProformaController {
         this.besoinRepository = besoinRepository;
     }
 
-    @GetMapping("getBesoin/{id}")
-    @Transactional
-    public ResponseEntity<?> getProforma(@PathVariable Long id){
-        Proforma prof=new Proforma();
-        try{
-            Optional<Besoin> besoin= besoinRepository.findById(id);
-
-            if (besoin.isPresent()) {
-                prof= proformaService.getProforma(besoin.get());
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return new ResponseEntity<>(prof.toString(), HttpStatus.OK);
-    }
+//    @GetMapping("getBesoin/{id}")
+//    @Transactional
+//    public ResponseEntity<?> getProforma(@PathVariable Long id){
+//        Proforma prof=new Proforma();
+//        try{
+//            Optional<Besoin> besoin= besoinRepository.findById(id);
+//
+//            if (besoin.isPresent()) {
+//                prof= proformaService.getProforma(besoin.get());
+//            }
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//        return new ResponseEntity<>(prof.toString(), HttpStatus.OK);
+//    }
 }

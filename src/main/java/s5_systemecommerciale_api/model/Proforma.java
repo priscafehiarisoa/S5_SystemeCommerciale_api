@@ -92,15 +92,15 @@ public class Proforma {
         setTotalPrixTTC(totalPrixTTC);
     }
 
-    @Override
-    public String toString() {
-        return "Proforma{" +
-                "besoin=" + besoinProduits.toString() +
-                ", produit_fournisseurList=" + produit_fournisseurList.toString() +
-                ", totalPrixHt=" + totalPrixHt +
-                ", totalPrixTTC=" + totalPrixTTC +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Proforma{" +
+//                "besoin=" + besoinProduits.toString() +
+//                ", produit_fournisseurList=" + produit_fournisseurList.toString() +
+//                ", totalPrixHt=" + totalPrixHt +
+//                ", totalPrixTTC=" + totalPrixTTC +
+//                '}';
+//    }
 
     public Proforma(Long id, Besoin besoin, List<Produit_Fournisseur> produit_fournisseurList, double totalPrixHt, double totalPrixTTC) {
         this.id = id;
