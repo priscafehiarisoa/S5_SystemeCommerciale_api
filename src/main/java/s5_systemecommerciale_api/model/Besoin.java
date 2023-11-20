@@ -20,7 +20,8 @@ public class Besoin {
     Service service;
     double quantite;
     String motif;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "besoin", cascade = CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "besoin", cascade = CascadeType.ALL)
+    @Transient
     List<Besoin_produit> besoinProduits;
     int etat=0;
 
