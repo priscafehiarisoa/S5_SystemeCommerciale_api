@@ -38,4 +38,12 @@ public class Service {
     public void setNomService(String nomService) {
         this.nomService = nomService;
     }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", nomService='" + nomService + '\'' +
+                '}';
+    }
 }

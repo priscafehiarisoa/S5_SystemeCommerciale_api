@@ -17,11 +17,12 @@ public class FournisseurService {
     }
 
     public void addNewFournisseur(Fournisseur fournisseur){
+        Fournisseur  f2 = new Fournisseur(fournisseur.getNom_fournisseur(), fournisseur.getAdresse(), fournisseur.getTelephone(),fournisseur.getNom_responsable(),fournisseur.getPrix_livraison() );
         fournisseurRepository.save(fournisseur);
     }
 
     public void deleteFournisseur(long id) throws IllegalAccessException {
-        if(!fournisseurRepository.existsById((long) id))
+        if(!fournisseurRepository.existsById(id))
         {
             throw new IllegalAccessException("fournisseur n existe pas");
         }

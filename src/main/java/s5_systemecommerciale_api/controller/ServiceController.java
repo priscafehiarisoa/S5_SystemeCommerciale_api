@@ -1,10 +1,7 @@
 package s5_systemecommerciale_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import s5_systemecommerciale_api.model.Fournisseur;
 import s5_systemecommerciale_api.model.Service;
 import s5_systemecommerciale_api.repository.ServiceRepository;
@@ -26,5 +23,11 @@ public class ServiceController {
     @GetMapping
     public List<Service> getAllService(){
         return service.getAllService();
+    }
+
+    @PostMapping
+    public void save(@RequestBody Service service){
+
+        serviceRepository.save(service);
     }
 }

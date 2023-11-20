@@ -18,10 +18,9 @@ public class Fournisseur {
     String telephone;
     String nom_responsable;
     double prix_livraison;
-
-    @OneToMany
-
-    List<Produit_Fournisseur> produitFournisseurs;
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fournisseur", cascade = CascadeType.ALL)
+//    List<Produit_Fournisseur> produitFournisseurs;
 
     public Fournisseur(Long id, String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison) {
         setId(id);
@@ -42,6 +41,14 @@ public class Fournisseur {
 
     public Fournisseur() {
     }
+
+//    public List<Produit_Fournisseur> getProduitFournisseurs() {
+//        return produitFournisseurs;
+//    }
+//
+//    public void setProduitFournisseurs(List<Produit_Fournisseur> produitFournisseurs) {
+//        this.produitFournisseurs = produitFournisseurs;
+//    }
 
     public Long getId() {
         return id;
@@ -90,6 +97,19 @@ public class Fournisseur {
     public void setPrix_livraison(double prix_livraison) {
         this.prix_livraison = prix_livraison;
     }
+
+    @Override
+    public String toString() {
+        return "Fournisseur{" +
+                "id=" + id +
+                ", nom_fournisseur='" + nom_fournisseur + '\'' +
+                ", Adresse='" + Adresse + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", nom_responsable='" + nom_responsable + '\'' +
+                ", prix_livraison=" + prix_livraison +
+                '}';
+    }
+
     public void setPrix_livraison(String prix_livraison) throws Exception {
         if(prix_livraison ==null){
             throw new Exception("valeur ne peux pas etre nulle");
@@ -108,6 +128,8 @@ public class Fournisseur {
         {
             System.out.println(e.getMessage());
         }
+
+
 
     }
 }

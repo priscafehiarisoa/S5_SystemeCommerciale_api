@@ -52,4 +52,13 @@ public class Produit {
 
     public Produit() {
     }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "id=" + id +
+                ", nomProduit='" + nomProduit + '\'' +
+                ", etat=" + etat +
+                '}';
+    }
 }

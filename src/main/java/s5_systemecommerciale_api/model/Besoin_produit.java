@@ -3,6 +3,7 @@ package s5_systemecommerciale_api.model;
 import jakarta.persistence.*;
 
 @Entity
+
 public class Besoin_produit {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator ="besoin_produit_seq" )
@@ -11,7 +12,7 @@ public class Besoin_produit {
     Long id;
     double quantite;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_besoin")
     Besoin besoin;
 
@@ -86,5 +87,15 @@ public class Besoin_produit {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Besoin_produit{" +
+                "id=" + id +
+                ", quantite=" + quantite +
+                ", besoin=" + besoin.toString() +
+                ", produit=" + produit.toString() +
+                '}';
     }
 }

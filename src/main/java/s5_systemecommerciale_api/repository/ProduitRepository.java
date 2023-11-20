@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import s5_systemecommerciale_api.model.Fournisseur;
 import s5_systemecommerciale_api.model.Produit;
+import s5_systemecommerciale_api.model.Produit_Fournisseur;
 
 import java.util.List;
 
@@ -21,5 +22,9 @@ public interface ProduitRepository extends JpaRepository<Produit,Long> {
     @Transactional
     @Query(value = "update Produit p set p.etat=10 where p.id = :id")
     void deleteproduit( Long id);
+
+
+
+
 
 }

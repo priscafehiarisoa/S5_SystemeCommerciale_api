@@ -1,6 +1,9 @@
 package s5_systemecommerciale_api.controller;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import s5_systemecommerciale_api.model.Besoin;
 import s5_systemecommerciale_api.model.Produit;
@@ -20,6 +23,9 @@ public class BesoinController {
     @Autowired
     BesoinService besoinService;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @GetMapping
     public List<Besoin> getAllBesoin()
     {
@@ -27,7 +33,8 @@ public class BesoinController {
     }
 
     @PostMapping
-    public void insert(@RequestBody Besoin besoin){
+    @Transactional
+    public void insert(@RequestBody Besoin besoin) throws Exception {
         besoinService.addNewBesoin(besoin);
     }
 
@@ -47,7 +54,7 @@ public class BesoinController {
         return besoinRepository.getAllBesoinValide();
     }
 
-    @PutMapping("/effacer/{id}")
+    @DeleteMapping("/effacer/{id}")
     public  void  deleteBesoin(@PathVariable Long id){
         besoinRepository.deleteBesoin(id);
     }

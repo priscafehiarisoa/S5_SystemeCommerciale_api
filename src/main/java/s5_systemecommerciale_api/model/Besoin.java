@@ -1,7 +1,10 @@
 package s5_systemecommerciale_api.model;
 
 import jakarta.persistence.*;
+import org.hibernate.Hibernate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -17,7 +20,7 @@ public class Besoin {
     Service service;
     double quantite;
     String motif;
-    @OneToMany(mappedBy = "besoin", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "besoin", cascade = CascadeType.ALL)
     List<Besoin_produit> besoinProduits;
     int etat=0;
 
@@ -37,6 +40,22 @@ public class Besoin {
         setMotif(motif);
         setQuantite(quantite);
         setEtat(etat);
+    }
+    public Besoin(Long id, Service service, double quantite, String motif, int etat,List<Besoin_produit> besoinProduits) {
+        setId(id);
+        setService(service);
+        setMotif(motif);
+        setQuantite(quantite);
+        setEtat(etat);
+        setBesoinProduits(besoinProduits);
+    }
+
+    public List<Besoin_produit> getBesoinProduits() {
+        return besoinProduits;
+    }
+
+    public void setBesoinProduits(List<Besoin_produit> besoinProduits) {
+        this.besoinProduits = besoinProduits;
     }
 
     public Long getId() {
@@ -75,14 +94,6 @@ public class Besoin {
         return etat;
     }
 
-    public List<Besoin_produit> getBesoinProduits() {
-        return besoinProduits;
-    }
-
-    public void setBesoinProduits(List<Besoin_produit> besoinProduits) {
-        this.besoinProduits = besoinProduits;
-    }
-
     public void setEtat(int etat) {
         this.etat = etat;
     }
@@ -108,4 +119,17 @@ public class Besoin {
 
     }
 
+    @Override
+    public String toString() {
+        Hibernate.initialize(besoinProduits);
+
+        return "Besoin{" +
+                "id=" + id +
+                ",\n service=" + service.toString() +
+                ",\n quantite=" + quantite +
+                ",\n motif='" + motif + '\'' +
+                ",\n besoinProduits =" + null +
+                ",\n etat=" + etat +
+                '}';
+    }
 }

@@ -17,6 +17,7 @@ public class Produit_Fournisseur {
     Fournisseur fournisseur;
 
     @ManyToOne
+//            (cascade = CascadeType.ALL)
     @JoinColumn(name = "id_produit")
     Produit produit;
 
@@ -24,27 +25,38 @@ public class Produit_Fournisseur {
     double delaiDeLivraison;
     int etat;
     Timestamp Date;
+    double prixHorsTaxe;
 
     public Produit_Fournisseur(Long id, Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date) {
-        this.id = id;
-        this.fournisseur = fournisseur;
-        this.produit = produit;
-        this.taxe = taxe;
-        this.delaiDeLivraison = delaiDeLivraison;
-        this.etat = etat;
-        Date = date;
+        setId(id);
+        setFournisseur(fournisseur);
+        setProduit(produit);
+        setTaxe(taxe);
+        setDelaiDeLivraison(delaiDeLivraison);
+        setEtat(etat);
+        setDate(date);
     }
 
-    public Produit_Fournisseur(Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date) {
-        this.fournisseur = fournisseur;
-        this.produit = produit;
-        this.taxe = taxe;
-        this.delaiDeLivraison = delaiDeLivraison;
-        this.etat = etat;
-        Date = date;
+    public Produit_Fournisseur(Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double prixHorsTaxe) {
+        setFournisseur(fournisseur);
+        setProduit(produit);
+        setTaxe(taxe);
+        setDelaiDeLivraison(delaiDeLivraison);
+        setEtat(etat);
+        setDate(date);
+        setPrixHorsTaxe(prixHorsTaxe);
     }
+
 
     public Produit_Fournisseur() {
+    }
+
+    public double getPrixHorsTaxe() {
+        return prixHorsTaxe;
+    }
+
+    public void setPrixHorsTaxe(double prixHorsTaxe) {
+        this.prixHorsTaxe = prixHorsTaxe;
     }
 
     public Long getId() {
@@ -141,5 +153,19 @@ public class Produit_Fournisseur {
 
     public void setDate(Timestamp date) {
         Date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Produit_Fournisseur{" +
+                "id=" + id +
+                ", fournisseur=" + fournisseur.toString() +
+                ", produit=" + produit +
+                ", taxe=" + taxe +
+                ", delaiDeLivraison=" + delaiDeLivraison +
+                ", etat=" + etat +
+                ", Date=" + Date +
+                ", prixHorsTaxe=" + prixHorsTaxe +
+                '}';
     }
 }

@@ -28,26 +28,25 @@ public class FournisseurController {
 
 
     @PostMapping
-    public void insertFournisseur(@RequestBody Fournisseur user)
+    public void insertFournisseur(@RequestBody Fournisseur fournisseur)
     {
-        System.out.println(user);
-        fournisseurService.addNewFournisseur(user);
+        fournisseurService.addNewFournisseur(fournisseur);
     }
 
     @PutMapping("/{id}")
-    public Fournisseur updateFournisseur(@RequestBody Fournisseur user, @PathVariable Long id) {
+    public Fournisseur updateFournisseur(@RequestBody Fournisseur fournisseur, @PathVariable Long id) {
         return fournisseurRepository.findById(Long.valueOf(String.valueOf(id))).map(
-                user1 -> {
-                    user1.setAdresse(user.getAdresse());
-                    user1.setNom_fournisseur(user.getNom_fournisseur());
-                    user1.setNom_responsable(user.getNom_responsable());
-                    user1.setTelephone(user.getTelephone());
-                    user1.setPrix_livraison(user.getPrix_livraison());
-                    return fournisseurRepository.save(user1);
+                fournisseur1 -> {
+                    fournisseur1.setAdresse(fournisseur.getAdresse());
+                    fournisseur1.setNom_fournisseur(fournisseur.getNom_fournisseur());
+                    fournisseur1.setNom_responsable(fournisseur.getNom_responsable());
+                    fournisseur1.setTelephone(fournisseur.getTelephone());
+                    fournisseur1.setPrix_livraison(fournisseur.getPrix_livraison());
+                    return fournisseurRepository.save(fournisseur1);
                 }
         ).orElseGet(() -> {
-                    user.setId(id);
-                    return fournisseurRepository.save(user);
+            fournisseur.setId(id);
+                    return fournisseurRepository.save(fournisseur);
 
                 }
         );
