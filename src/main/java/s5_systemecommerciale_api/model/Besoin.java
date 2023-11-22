@@ -18,9 +18,8 @@ public class Besoin {
     @ManyToOne
     @JoinColumn(name = "id_service")
     Service service;
-    double quantite;
     String motif;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "besoin", cascade = CascadeType.ALL)
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "besoin", cascade = CascadeType.PERSIST)
     @Transient
     List<Besoin_produit> besoinProduits;
     int etat=0;
@@ -28,25 +27,22 @@ public class Besoin {
     public Besoin() {
     }
 
-    public Besoin(Service service, double quantite, String motif, int etat) {
+    public Besoin(Service service,  String motif, int etat) {
         setService(service);
         setMotif(motif);
-        setQuantite(quantite);
         setEtat(etat);
     }
 
-    public Besoin(Long id, Service service, double quantite, String motif, int etat) {
+    public Besoin(Long id, Service service,  String motif, int etat) {
         setId(id);
         setService(service);
         setMotif(motif);
-        setQuantite(quantite);
         setEtat(etat);
     }
-    public Besoin(Long id, Service service, double quantite, String motif, int etat,List<Besoin_produit> besoinProduits) {
+    public Besoin(Long id, Service service, String motif, int etat,List<Besoin_produit> besoinProduits) {
         setId(id);
         setService(service);
         setMotif(motif);
-        setQuantite(quantite);
         setEtat(etat);
         setBesoinProduits(besoinProduits);
     }
@@ -75,13 +71,7 @@ public class Besoin {
         this.service = service;
     }
 
-    public double getQuantite() {
-        return quantite;
-    }
 
-    public void setQuantite(double quantite) {
-        this.quantite = quantite;
-    }
 
     public String getMotif() {
         return motif;
@@ -99,26 +89,6 @@ public class Besoin {
         this.etat = etat;
     }
 
-    public void setQuantite(String quantite) throws Exception {
-        if(quantite ==null){
-            throw new Exception("valeur ne peux pas etre nulle");
-        }
-        try {
-            double prixdouble=Double.parseDouble((quantite));
-            if(prixdouble<0)
-            {
-                throw new Exception(("valeur ne peux pas etre negative"));
-            }
-            this.quantite = prixdouble;
-
-
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-
-    }
 
     @Override
     public String toString() {
@@ -127,9 +97,9 @@ public class Besoin {
         return "Besoin{" +
                 "id=" + id +
                 ",\n service=" + service.toString() +
-                ",\n quantite=" + quantite +
                 ",\n motif='" + motif + '\'' +
                 ",\n etat=" + etat +
+//                "besoinProduits="+ getBesoinProduits()+
                 '}';
     }
 }

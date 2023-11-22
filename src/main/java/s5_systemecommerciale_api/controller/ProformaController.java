@@ -12,7 +12,7 @@ import s5_systemecommerciale_api.service.ProformaService;
 
 import java.util.*;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin()
 @RestController
 @RequestMapping("/besoin")
 public class ProformaController {

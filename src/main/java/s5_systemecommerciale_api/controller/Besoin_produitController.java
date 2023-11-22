@@ -9,7 +9,7 @@ import s5_systemecommerciale_api.service.Besoin_produitService;
 
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin()
 
 @RestController
 @RequestMapping("/besoinProduit")
