@@ -94,12 +94,12 @@ public class Besoin {
     public String toString() {
 //        Hibernate.initialize(besoinProduits);
 
-        return "Besoin{" +
+        return "\n \t Besoin{" +
                 "id=" + id +
-                ",\n service=" + service.toString() +
-                ",\n motif='" + motif + '\'' +
-                ",\n etat=" + etat +
+                ", service=" + service.toString() +
+                ", motif='" + motif + '\'' +
+                ", etat=" + etat +
 //                "besoinProduits="+ getBesoinProduits()+
-                '}';
+                "} \n";
     }
 }

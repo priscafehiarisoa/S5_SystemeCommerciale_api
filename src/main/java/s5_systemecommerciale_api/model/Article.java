@@ -12,6 +12,7 @@ public class Article {
     double PrixUnitaire;
     Fournisseur fournisseur;
     Produit produit;
+    Besoin besoin;
 
     public Article( Besoin_produit besoinProduit, Produit_Fournisseur produitFournisseur) {
         setDesignation(besoinProduit.getProduit().nomProduit);
@@ -22,6 +23,15 @@ public class Article {
         setPrixTTC(getPrixHorsTaxe()+(getPrixHorsTaxe()*(taxes/100)));
         setFournisseur(produitFournisseur.getFournisseur());
         setProduit(produitFournisseur.getProduit());
+        setBesoin(besoinProduit.getBesoin());
+    }
+
+    public Besoin getBesoin() {
+        return besoin;
+    }
+
+    public void setBesoin(Besoin besoin) {
+        this.besoin = besoin;
     }
 
     public Produit getProduit() {
@@ -99,6 +109,7 @@ public class Article {
                 ", PrixUnitaire=" + PrixUnitaire +
                 ", fournisseur=" + fournisseur +
                 ", produit=" + produit +
+                ", besoin=" + besoin +
                 '}';
     }
 }
