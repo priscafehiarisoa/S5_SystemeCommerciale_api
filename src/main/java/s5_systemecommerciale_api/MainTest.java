@@ -5,9 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import s5_systemecommerciale_api.model.*;
 import s5_systemecommerciale_api.repository.BesoinRepository;
-import s5_systemecommerciale_api.repository.FournisseurRepository;
-import s5_systemecommerciale_api.repository.ProduitRepository;
-import s5_systemecommerciale_api.repository.ServiceRepository;
+import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 import s5_systemecommerciale_api.service.Produit_fournisseurService;
 import s5_systemecommerciale_api.service.ProformaService;
 
@@ -16,30 +14,22 @@ import java.util.Optional;
 
 @Configuration
 public class MainTest {
-    private final FournisseurRepository fournisseurRepository;
-    private final ServiceRepository serviceRepository;
-
-    public MainTest(FournisseurRepository fournisseurRepository, ServiceRepository serviceRepository) {
-        this.fournisseurRepository = fournisseurRepository;
-        this.serviceRepository = serviceRepository;
-    }
-
     @Bean
-    CommandLineRunner commandLineRunner(BesoinRepository besoinRepository,ProduitRepository produitRepository, Produit_fournisseurService produitFournisseurService, ProformaService proformaService){
+    CommandLineRunner commandLineRunner(BesoinRepository besoinRepository, Produit_fournisseurService produitFournisseurService, ProformaService proformaService,
+                                        Besoin_produitRepository besoin_produitRepository){
         return args -> {
-            Optional<Besoin> besoin= besoinRepository.findById(8L);
-            Produit produit = new Produit("ordi portable",0);
-            Produit produit2 = new Produit("produit 2",0);
-            Produit produit3 = new Produit("ordi portable 4",0);
-            Produit produit4 = new Produit("ordi portable 5",0);
-            produitRepository.saveAll(List.of(produit,produit2,produit3,produit4));
-            Fournisseur fournisseur= new Fournisseur("Jeddy","andoram","0341872531","jeddy2",2000);
-            fournisseurRepository.save(fournisseur);
-
-            Service service = new Service("service1");
-            Service service2 = new Service("service2");
-            serviceRepository.saveAll(List.of(service2,service));
-//            System.out.println(prof.toString());
+            Optional<Besoin> besoin= besoinRepository.findById(11L);
+            Proforma prof=new Proforma();
+            if (besoin.isPresent()) {
+                System.out.println("**************");
+                List<List<Article> >liste=proformaService.listeArticlesSelonBesoin(besoin.get());
+                for (int i = 0; i < liste.size(); i++) {
+                    System.out.println(liste.get(i).toString());
+                }
+//                List<Besoin_produit> bp=besoin_produitRepository.findAllByBesoin_Id(besoin.get().getId());
+//                bp.forEach(System.out::println);
+//                System.out.println(bp.size());
+            }
         };
     }
 }

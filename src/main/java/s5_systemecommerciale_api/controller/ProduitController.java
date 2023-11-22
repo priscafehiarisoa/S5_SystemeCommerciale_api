@@ -8,8 +8,7 @@ import s5_systemecommerciale_api.service.ProduitService;
 
 import java.util.List;
 
-@CrossOrigin
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/produit")
 public class ProduitController {
@@ -33,7 +32,6 @@ public class ProduitController {
 
     @PostMapping
     public void insert(@RequestBody Produit produit){
-
         produitService.addNewProduit(produit);
     }
 
@@ -43,16 +41,16 @@ public class ProduitController {
     }
 
     @PutMapping("/{id}")
-    public Produit updateFournisseur(@RequestBody Produit user, @PathVariable Long id) {
+    public Produit updateFournisseur(@RequestBody Produit produit, @PathVariable Long id) {
         return produitRepository.findById(Long.valueOf(String.valueOf(id))).map(
                 user1 -> {
-                  user1.setEtat(user.getEtat());
-                  user1.setNomProduit(user.getNomProduit());
+                  user1.setEtat(produit.getEtat());
+                  user1.setNomProduit(produit.getNomProduit());
                     return produitRepository.save(user1);
                 }
         ).orElseGet(() -> {
-                    user.setId(id);
-                    return produitRepository.save(user);
+            produit.setId(id);
+                    return produitRepository.save(produit);
 
                 }
         );

@@ -1,5 +1,8 @@
 package s5_systemecommerciale_api.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Article {
     String designation;
     double quantite;
@@ -18,6 +21,7 @@ public class Article {
         setPrixHorsTaxe(getQuantite()*getPrixUnitaire());
         setPrixTTC(getPrixHorsTaxe()+(getPrixHorsTaxe()*(taxes/100)));
         setFournisseur(produitFournisseur.getFournisseur());
+        setProduit(produitFournisseur.getProduit());
     }
 
     public Produit getProduit() {
@@ -84,5 +88,17 @@ public class Article {
         this.prixTTC = prixTTC;
     }
 
-
+    @Override
+    public String toString() {
+        return "Article{" +
+                "designation='" + designation + '\'' +
+                ", quantite=" + quantite +
+                ", prixHorsTaxe=" + prixHorsTaxe +
+                ", taxes=" + taxes +
+                ", prixTTC=" + prixTTC +
+                ", PrixUnitaire=" + PrixUnitaire +
+                ", fournisseur=" + fournisseur +
+                ", produit=" + produit +
+                '}';
+    }
 }

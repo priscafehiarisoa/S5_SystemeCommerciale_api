@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import s5_systemecommerciale_api.model.Besoin;
-import s5_systemecommerciale_api.model.Fournisseur;
-import s5_systemecommerciale_api.model.Produit;
-import s5_systemecommerciale_api.model.Produit_Fournisseur;
+import s5_systemecommerciale_api.model.*;
+import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 import s5_systemecommerciale_api.repository.FournisseurRepository;
 import s5_systemecommerciale_api.repository.ProduitRepository;
 import s5_systemecommerciale_api.repository.Produit_fournisseurRepository;
@@ -26,6 +24,8 @@ public class Produit_fournisseurService {
     private FournisseurRepository fournisseurRepository;
     @Autowired
     private ProduitRepository produitRepository;
+    @Autowired
+    private Besoin_produitRepository besoin_produitRepository;
 
     public void AddnewProduitFournisseur(Produit_Fournisseur produitFournisseur){
         // verifier si on possède déjà un produit du fournisseur dans la base de donnée
@@ -43,9 +43,10 @@ public class Produit_fournisseurService {
 
     // obtenir les 3 meilleurs prix a partir des prix qu'on a dans la base
     public List<List<Produit_Fournisseur>> get3meilleurPrix(Besoin besoin){
+        Besoinmodel besoinmodel=new Besoinmodel(besoin,besoin_produitRepository);
         List<List<Produit_Fournisseur>> response = new ArrayList<>();
-        for (int i = 0; i < besoin.getBesoinProduits().size(); i++) {
-            Optional<Produit> produit= produitRepository.findById(besoin.getBesoinProduits().get(i).getProduit().getId());
+        for (int i = 0; i < besoinmodel.getListeBesoin().size(); i++) {
+            Optional<Produit> produit= produitRepository.findById(besoinmodel.getListeBesoin().get(i).getProduit().getId());
             if(produit.isPresent()){
                 List<Produit_Fournisseur> liste= produitFournisseurRepository.getMini_proforma(produit.get());
                 response.add(liste);
@@ -56,9 +57,11 @@ public class Produit_fournisseurService {
 
     // obtenir les n meilleurs prix a partir des prix qu'on a dans la base
     public List<List<Produit_Fournisseur>> getNmeilleurPrix(Besoin besoin,int limit){
+        Besoinmodel besoinmodel=new Besoinmodel(besoin,besoin_produitRepository);
+
         List<List<Produit_Fournisseur>> response = new ArrayList<>();
-        for (int i = 0; i < besoin.getBesoinProduits().size(); i++) {
-            Optional<Produit> produit= produitRepository.findById(besoin.getBesoinProduits().get(i).getProduit().getId());
+        for (int i = 0; i < besoinmodel.getListeBesoin().size(); i++) {
+            Optional<Produit> produit= produitRepository.findById(besoinmodel.getListeBesoin().get(i).getProduit().getId());
             if(produit.isPresent()){
                 Pageable pages = PageRequest.of(0, limit);
 

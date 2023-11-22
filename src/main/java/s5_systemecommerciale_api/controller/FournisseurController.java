@@ -9,8 +9,7 @@ import s5_systemecommerciale_api.service.FournisseurService;
 
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:3000")
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/fournisseur")
 public class FournisseurController {

@@ -4,17 +4,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import s5_systemecommerciale_api.model.Article;
 import s5_systemecommerciale_api.model.Besoin;
 import s5_systemecommerciale_api.model.Proforma;
 import s5_systemecommerciale_api.repository.BesoinRepository;
 import s5_systemecommerciale_api.service.ProformaService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin()
 @RestController
 @RequestMapping("/besoin")
 public class ProformaController {
@@ -26,21 +24,17 @@ public class ProformaController {
         this.besoinRepository = besoinRepository;
     }
 
-//    @GetMapping("getBesoin/{id}")
-//    @Transactional
-//    public ResponseEntity<?> getProforma(@PathVariable Long id){
-//        Proforma prof=new Proforma();
-//        try{
-//            Optional<Besoin> besoin= besoinRepository.findById(id);
+    @GetMapping("getBesoin/{id}")
+    @Transactional
+    public ResponseEntity<?> getProforma(@PathVariable Long id){
+            Optional<Besoin> besoin= besoinRepository.findById(id);
+        List<List<Article>> prof=new ArrayList<>();
+            if (besoin.isPresent()) {
 //
-//            if (besoin.isPresent()) {
-//                prof= proformaService.getProforma(besoin.get());
-//            }
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//
-//        return new ResponseEntity<>(prof.toString(), HttpStatus.OK);
-//    }
+               prof= proformaService.listeArticlesSelonBesoin(besoin.get());
+            }
+
+
+        return new ResponseEntity<>(prof, HttpStatus.OK);
+    }
 }

@@ -154,6 +154,9 @@ public class Produit_Fournisseur {
     public void setDate(Timestamp date) {
         Date = date;
     }
+    public void setDate(String date) {
+        Date = Timestamp.valueOf(date);
+    }
 
     @Override
     public String toString() {

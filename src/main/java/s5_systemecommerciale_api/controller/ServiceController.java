@@ -9,8 +9,7 @@ import s5_systemecommerciale_api.service.ServiceService;
 
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:3000")
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/service")
 public class ServiceController {
