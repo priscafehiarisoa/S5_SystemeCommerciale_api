@@ -1,22 +1,16 @@
 package s5_systemecommerciale_api.controller;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import s5_systemecommerciale_api.model.Besoin;
-import s5_systemecommerciale_api.model.Besoin_produit;
-import s5_systemecommerciale_api.model.Besoinmodel;
+import s5_systemecommerciale_api.model.besoins.Besoin;
 import s5_systemecommerciale_api.repository.BesoinRepository;
 import s5_systemecommerciale_api.service.BesoinService;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @CrossOrigin()
 @RestController
@@ -40,15 +34,23 @@ public class BesoinController {
                 .build();
     }
 
+//    @GetMapping
+//    @Transactional
+//
+//    public List<List <Besoin_produit> > getAllBesoin()
+//    {
+//        List<List <Besoin_produit> > bp=besoinService.getAllBesoin();
+//        System.out.println("===============3=========");
+//        System.out.println(bp.toString());
+//        return bp;
+//    }
     @GetMapping
     @Transactional
 
-    public List<List <Besoin_produit> > getAllBesoin()
+    public List<Besoin> getAllBesoin()
     {
-        List<List <Besoin_produit> > bp=besoinService.getAllBesoin();
-        System.out.println("===============3=========");
-        System.out.println(bp.toString());
-        return bp;
+
+        return besoinService.getAllBesoin();
     }
 
 
@@ -80,9 +82,13 @@ public class BesoinController {
         besoinRepository.deleteBesoin(id);
     }
 
-    @PutMapping("/valider/{id}")
+    @PutMapping("/valider1/{id}")
     public  void  validerBesoin(@PathVariable Long id){
-        besoinRepository.validerBesoin(id);
+        besoinRepository.validerBesoin1(id);
+    }
+    @PutMapping("/valider2/{id}")
+    public  void  validerBesoin2(@PathVariable Long id){
+        besoinRepository.validerBesoin2(id);
     }
 
 }

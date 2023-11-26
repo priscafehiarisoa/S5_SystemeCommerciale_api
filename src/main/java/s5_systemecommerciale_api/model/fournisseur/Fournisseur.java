@@ -1,11 +1,16 @@
-package s5_systemecommerciale_api.model;
+package s5_systemecommerciale_api.model.fournisseur;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator ="fournisseur_seq" )
@@ -18,25 +23,28 @@ public class Fournisseur {
     String telephone;
     String nom_responsable;
     double prix_livraison;
+    String email;
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fournisseur", cascade = CascadeType.ALL)
 //    List<Produit_Fournisseur> produitFournisseurs;
 
-    public Fournisseur(Long id, String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison) {
+    public Fournisseur(Long id, String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison, String email) {
         setId(id);
         setNom_fournisseur(nom_fournisseur);
         setAdresse(adresse);
         setTelephone(telephone);
         setNom_responsable(nom_responsable);
         setPrix_livraison(prix_livraison);
+        setEmail(email);
     }
 
-    public Fournisseur(String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison) {
+    public Fournisseur(String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison,String email) {
         setNom_fournisseur(nom_fournisseur);
         setAdresse(adresse);
         setTelephone(telephone);
         setNom_responsable(nom_responsable);
         setPrix_livraison(prix_livraison);
+        setEmail(email);
     }
 
     public Fournisseur() {
@@ -50,54 +58,6 @@ public class Fournisseur {
 //        this.produitFournisseurs = produitFournisseurs;
 //    }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom_fournisseur() {
-        return nom_fournisseur;
-    }
-
-    public void setNom_fournisseur(String nom_fournisseur) {
-        this.nom_fournisseur = nom_fournisseur;
-    }
-
-    public String getAdresse() {
-        return Adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        Adresse = adresse;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getNom_responsable() {
-        return nom_responsable;
-    }
-
-    public void setNom_responsable(String nom_responsable) {
-        this.nom_responsable = nom_responsable;
-    }
-
-    public double getPrix_livraison() {
-        return prix_livraison;
-    }
-
-    public void setPrix_livraison(double prix_livraison) {
-        this.prix_livraison = prix_livraison;
-    }
-
     @Override
     public String toString() {
         return "Fournisseur{" +
@@ -108,6 +68,10 @@ public class Fournisseur {
                 ", nom_responsable='" + nom_responsable + '\'' +
                 ", prix_livraison=" + prix_livraison +
                 '}';
+    }
+
+    public void setPrix_livraison(double prix_livraison) {
+        this.prix_livraison = prix_livraison;
     }
 
     public void setPrix_livraison(String prix_livraison) throws Exception {

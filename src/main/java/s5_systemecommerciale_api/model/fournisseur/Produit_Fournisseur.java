@@ -1,6 +1,7 @@
-package s5_systemecommerciale_api.model;
+package s5_systemecommerciale_api.model.fournisseur;
 
 import jakarta.persistence.*;
+import s5_systemecommerciale_api.model.produit.Produit;
 
 import java.sql.Timestamp;
 

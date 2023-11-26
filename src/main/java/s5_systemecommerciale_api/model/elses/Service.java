@@ -1,4 +1,4 @@
-package s5_systemecommerciale_api.model;
+package s5_systemecommerciale_api.model.elses;
 
 import jakarta.persistence.*;
 

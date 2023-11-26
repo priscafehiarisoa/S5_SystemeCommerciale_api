@@ -3,11 +3,8 @@ package s5_systemecommerciale_api.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import s5_systemecommerciale_api.model.Fournisseur;
-import s5_systemecommerciale_api.model.Produit;
-import s5_systemecommerciale_api.model.Produit_Fournisseur;
+import s5_systemecommerciale_api.model.produit.Produit;
 
 import java.util.List;
 

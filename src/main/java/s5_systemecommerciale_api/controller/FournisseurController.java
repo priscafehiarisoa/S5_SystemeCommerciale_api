@@ -1,9 +1,8 @@
 package s5_systemecommerciale_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import s5_systemecommerciale_api.model.Fournisseur;
+import s5_systemecommerciale_api.model.fournisseur.Fournisseur;
 import s5_systemecommerciale_api.repository.FournisseurRepository;
 import s5_systemecommerciale_api.service.FournisseurService;
 

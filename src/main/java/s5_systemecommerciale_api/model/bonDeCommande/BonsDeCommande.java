@@ -1,12 +1,16 @@
-package s5_systemecommerciale_api.model;
+package s5_systemecommerciale_api.model.bonDeCommande;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.transaction.annotation.Transactional;
+import s5_systemecommerciale_api.model.produit.Article;
+import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.fournisseur.Fournisseur;
 import s5_systemecommerciale_api.repository.BonDeCommandeArticleRepository;
 import s5_systemecommerciale_api.repository.BonDeCommandeRepository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +32,8 @@ public class BonsDeCommande {
     @ManyToOne
     @JoinColumn(name = "id_besoin")
     private Besoin besoin;
+
+    private LocalDateTime dateBonDeCommande;
 
 
 
@@ -51,6 +57,7 @@ public class BonsDeCommande {
         }
         setTotalTTC(TTC);
         setTotalHorsTaxes(HT);
+        setDateBonDeCommande(LocalDateTime.now());
 //        setListeArticles(BonsDeCommandeArticle.getBCFromListArticle(liste,this));
     }
 

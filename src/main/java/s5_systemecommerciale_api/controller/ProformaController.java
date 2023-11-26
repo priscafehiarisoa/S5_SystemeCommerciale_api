@@ -4,10 +4,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import s5_systemecommerciale_api.model.*;
+import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.bonDeCommande.BonsDeCommande;
+import s5_systemecommerciale_api.model.bonDeCommande.BonsDeCommandeArticle;
+import s5_systemecommerciale_api.model.produit.Article;
 import s5_systemecommerciale_api.repository.BesoinRepository;
 import s5_systemecommerciale_api.repository.BonDeCommandeArticleRepository;
 import s5_systemecommerciale_api.repository.BonDeCommandeRepository;
+import s5_systemecommerciale_api.service.EmailSenderService;
 import s5_systemecommerciale_api.service.ProformaService;
 
 import java.util.*;
@@ -20,14 +24,16 @@ public class ProformaController {
     private final BesoinRepository besoinRepository;
     private final BonDeCommandeRepository bonDeCommandeRepository;
     private final BonDeCommandeArticleRepository bonDeCommandeArticleRepository;
+    private final EmailSenderService emailSenderService;
 
     public ProformaController(ProformaService proformaService, BesoinRepository besoinRepository,
                               BonDeCommandeRepository bonDeCommandeRepository,
-                              BonDeCommandeArticleRepository bonDeCommandeArticleRepository) {
+                              BonDeCommandeArticleRepository bonDeCommandeArticleRepository, EmailSenderService emailSenderService) {
         this.proformaService = proformaService;
         this.besoinRepository = besoinRepository;
         this.bonDeCommandeRepository = bonDeCommandeRepository;
         this.bonDeCommandeArticleRepository = bonDeCommandeArticleRepository;
+        this.emailSenderService = emailSenderService;
     }
 
     @GetMapping("getBesoin/{id}")
@@ -79,5 +85,12 @@ public class ProformaController {
             bonsDeCommandes.get(i).setListeArticles(bonsDeCommandeArticles);
         }
         return bonsDeCommandes;
+    }
+
+    @PostMapping("/sendEmail")
+    public void sendDemandeProforma (@RequestBody Map<String,List<Long>> listes) throws Exception {
+        List<Long> listFournisseur= listes.get("fournisseur");
+        List<Long> listProduit= listes.get("produit");
+        emailSenderService.sendMailToAllFournisseurs(listFournisseur,listProduit);
     }
 }

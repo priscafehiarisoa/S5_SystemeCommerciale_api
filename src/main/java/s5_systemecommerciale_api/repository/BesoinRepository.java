@@ -3,10 +3,9 @@ package s5_systemecommerciale_api.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import s5_systemecommerciale_api.model.Besoin;
-import s5_systemecommerciale_api.model.Besoin_produit;
-import s5_systemecommerciale_api.model.Produit;
+import s5_systemecommerciale_api.model.besoins.Besoin;
 
 import java.util.List;
 
@@ -25,11 +24,16 @@ public interface BesoinRepository extends JpaRepository<Besoin,Long> {
     @Modifying
     @Transactional
     @Query(value = "update Besoin p set p.etat=-1 where p.id = :id")
-    void deleteBesoin( Long id);
+    void deleteBesoin(@Param("id") Long id);
 
     @Modifying
     @Transactional
     @Query(value = "update Besoin p set p.etat=10 where p.id = :id")
-    void validerBesoin( Long id);
+    void validerBesoin1(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update Besoin p set p.etat=20 where p.id = :id")
+    void validerBesoin2(@Param("id") Long id);
 
 }

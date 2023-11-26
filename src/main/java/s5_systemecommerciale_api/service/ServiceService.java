@@ -11,7 +11,7 @@ public class ServiceService {
     @Autowired
     ServiceRepository serviceRepository;
 
-    public List<s5_systemecommerciale_api.model.Service> getAllService()
+    public List<s5_systemecommerciale_api.model.elses.Service> getAllService()
     {
         return serviceRepository.findAll();
     }

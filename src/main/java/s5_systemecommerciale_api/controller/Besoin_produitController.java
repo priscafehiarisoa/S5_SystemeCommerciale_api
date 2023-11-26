@@ -2,8 +2,7 @@ package s5_systemecommerciale_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import s5_systemecommerciale_api.model.Besoin_produit;
-import s5_systemecommerciale_api.model.Fournisseur;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
 import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 import s5_systemecommerciale_api.service.Besoin_produitService;
 

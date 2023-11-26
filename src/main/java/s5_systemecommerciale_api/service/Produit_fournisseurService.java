@@ -1,11 +1,14 @@
 package s5_systemecommerciale_api.service;
 
-import org.hibernate.query.spi.Limit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import s5_systemecommerciale_api.model.*;
+import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.besoins.Besoinmodel;
+import s5_systemecommerciale_api.model.fournisseur.Fournisseur;
+import s5_systemecommerciale_api.model.fournisseur.Produit_Fournisseur;
+import s5_systemecommerciale_api.model.produit.Produit;
 import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 import s5_systemecommerciale_api.repository.FournisseurRepository;
 import s5_systemecommerciale_api.repository.ProduitRepository;

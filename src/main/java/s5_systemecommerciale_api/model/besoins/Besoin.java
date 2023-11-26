@@ -1,10 +1,8 @@
-package s5_systemecommerciale_api.model;
+package s5_systemecommerciale_api.model.besoins;
 
 import jakarta.persistence.*;
-import org.hibernate.Hibernate;
+import s5_systemecommerciale_api.model.elses.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity

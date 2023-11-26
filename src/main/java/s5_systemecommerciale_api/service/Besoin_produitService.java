@@ -2,7 +2,7 @@ package s5_systemecommerciale_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import s5_systemecommerciale_api.model.Besoin_produit;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
 import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 
 import java.util.List;

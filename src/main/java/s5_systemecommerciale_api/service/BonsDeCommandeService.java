@@ -1,10 +1,10 @@
 package s5_systemecommerciale_api.service;
 
 import org.springframework.stereotype.Service;
-import s5_systemecommerciale_api.model.Article;
-import s5_systemecommerciale_api.model.Besoin;
-import s5_systemecommerciale_api.model.BonsDeCommande;
-import s5_systemecommerciale_api.model.BonsDeCommandeArticle;
+import s5_systemecommerciale_api.model.produit.Article;
+import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.bonDeCommande.BonsDeCommande;
+import s5_systemecommerciale_api.model.bonDeCommande.BonsDeCommandeArticle;
 import s5_systemecommerciale_api.repository.BonDeCommandeArticleRepository;
 import s5_systemecommerciale_api.repository.BonDeCommandeRepository;
 

@@ -1,14 +1,10 @@
 package s5_systemecommerciale_api.service;
 
-import com.google.gson.Gson;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import s5_systemecommerciale_api.model.Besoin;
-import s5_systemecommerciale_api.model.Besoin_produit;
-import s5_systemecommerciale_api.model.Besoinmodel;
+import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
 import s5_systemecommerciale_api.repository.BesoinRepository;
 import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 
@@ -24,15 +20,16 @@ public class BesoinService {
 
 
     @Transactional
-    public List<List <Besoin_produit> > getAllBesoin(){
-        List<Besoin> lb= besoinRepository.getAllBesoinEnCoursDeValidation();
-        List<Besoinmodel> besoinmodels = new ArrayList<>();
-        List<List <Besoin_produit> >besoinProduits=new ArrayList<>();
-        for (int i = 0; i < lb.size(); i++) {
-            Besoinmodel bm=(new Besoinmodel(lb.get(i),besoin_produitRepository));
-            besoinProduits.add(bm.getListeBesoin());
-        }
-        return besoinProduits;
+    public List<Besoin> getAllBesoin(){
+//        List<Besoin> lb= besoinRepository.getAllBesoinEnCoursDeValidation();
+//        List<Besoinmodel> besoinmodels = new ArrayList<>();
+//        List<List <Besoin_produit> >besoinProduits=new ArrayList<>();
+//        for (int i = 0; i < lb.size(); i++) {
+//            Besoinmodel bm=(new Besoinmodel(lb.get(i),besoin_produitRepository));
+//            besoinProduits.add(bm.getListeBesoin());
+//        }
+//        return besoinProduits;
+        return besoinRepository.findAll();
     }
 //    public String getAllBesoin2(){
 //        List<Besoin> lb= besoinRepository.getAllBesoinEnCoursDeValidation();

@@ -1,8 +1,7 @@
 package s5_systemecommerciale_api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import s5_systemecommerciale_api.model.Besoin_produit;
-import s5_systemecommerciale_api.model.Produit;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
 
 import java.util.List;
 

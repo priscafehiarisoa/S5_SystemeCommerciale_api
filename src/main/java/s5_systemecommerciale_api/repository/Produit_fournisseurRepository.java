@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import s5_systemecommerciale_api.model.Produit;
-import s5_systemecommerciale_api.model.Produit_Fournisseur;
+import s5_systemecommerciale_api.model.produit.Produit;
+import s5_systemecommerciale_api.model.fournisseur.Produit_Fournisseur;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,12 +23,12 @@ public interface Produit_fournisseurRepository extends JpaRepository<Produit_Fou
     @Modifying
     @Transactional
     @Query(value = "update Produit_Fournisseur p set p.etat=-1 where p.id = :id")
-    void deleteproduitFournisseur( Long id);
+    void deleteproduitFournisseur(@Param("id") Long id);
 
     @Modifying
     @Transactional
     @Query(value = "update Produit_Fournisseur p set p.etat=-2 where p.id = :id")
-    void makeProduitFournisseurUnavailable( Long id);
+    void makeProduitFournisseurUnavailable(@Param("id") Long id);
 
     // obtenir les trois derniers proformat valide
     @Query(value = "select s from Produit_Fournisseur as s where s.produit=:idProduit and s.etat=0 order by s.prixHorsTaxe asc limit 3")

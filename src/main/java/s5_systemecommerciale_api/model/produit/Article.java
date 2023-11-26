@@ -1,7 +1,10 @@
-package s5_systemecommerciale_api.model;
+package s5_systemecommerciale_api.model.produit;
 
-import java.util.ArrayList;
-import java.util.List;
+import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
+import s5_systemecommerciale_api.model.fournisseur.Fournisseur;
+import s5_systemecommerciale_api.model.fournisseur.Produit_Fournisseur;
+import s5_systemecommerciale_api.model.produit.Produit;
 
 public class Article {
     String designation;
@@ -14,7 +17,7 @@ public class Article {
     Produit produit;
     Besoin besoin;
 
-    public Article( Besoin_produit besoinProduit, Produit_Fournisseur produitFournisseur) {
+    public Article(Besoin_produit besoinProduit, Produit_Fournisseur produitFournisseur) {
         setDesignation(besoinProduit.getProduit().nomProduit);
         setPrixUnitaire(produitFournisseur.getPrixHorsTaxe());
         setQuantite(besoinProduit.getQuantite());
