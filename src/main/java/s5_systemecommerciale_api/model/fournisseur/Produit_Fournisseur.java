@@ -1,11 +1,16 @@
 package s5_systemecommerciale_api.model.fournisseur;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import s5_systemecommerciale_api.model.produit.Produit;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+
 public class Produit_Fournisseur {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator ="produit_fournisseur_seq" )
@@ -27,8 +32,9 @@ public class Produit_Fournisseur {
     int etat;
     Timestamp Date;
     double prixHorsTaxe;
+    double quantiteStock;
 
-    public Produit_Fournisseur(Long id, Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date) {
+    public Produit_Fournisseur(Long id, Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double quantiteStock) {
         setId(id);
         setFournisseur(fournisseur);
         setProduit(produit);
@@ -36,9 +42,10 @@ public class Produit_Fournisseur {
         setDelaiDeLivraison(delaiDeLivraison);
         setEtat(etat);
         setDate(date);
+        setQuantiteStock(quantiteStock);
     }
 
-    public Produit_Fournisseur(Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double prixHorsTaxe) {
+    public Produit_Fournisseur(Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double prixHorsTaxe,double quantiteStock) {
         setFournisseur(fournisseur);
         setProduit(produit);
         setTaxe(taxe);
@@ -46,10 +53,19 @@ public class Produit_Fournisseur {
         setEtat(etat);
         setDate(date);
         setPrixHorsTaxe(prixHorsTaxe);
+        setQuantiteStock(quantiteStock);
     }
 
 
     public Produit_Fournisseur() {
+    }
+
+    public double getQuantiteStock() {
+        return quantiteStock;
+    }
+
+    public void setQuantiteStock(double quantiteStock) {
+        this.quantiteStock = quantiteStock;
     }
 
     public double getPrixHorsTaxe() {
@@ -172,4 +188,35 @@ public class Produit_Fournisseur {
                 ", prixHorsTaxe=" + prixHorsTaxe +
                 '}';
     }
+
+    public boolean checkIfNull(){
+        boolean resp= true;
+        if(id!=null){
+            resp=false;
+        }if(produit!=null){
+            resp=false;
+        }if(fournisseur!=null){
+            resp=false;
+        }if(taxe!=0){
+            resp=false;
+        }if(prixHorsTaxe!=0){
+            resp=false;
+        }if(delaiDeLivraison!=0){
+            resp=false;
+        }if(Date!=null){
+            resp=false;
+        }
+        return resp;
+    }
+
+    public List<Produit_Fournisseur> trier(List<Produit_Fournisseur> liste){
+        List<Produit_Fournisseur> newList=new ArrayList<>();
+        for (int i = 0; i < liste.size(); i++) {
+            if(!liste.get(i).checkIfNull()){
+                newList.add(liste.get(i));
+            }
+        }
+        return newList;
+    }
+
 }

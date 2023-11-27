@@ -41,15 +41,12 @@ public class ProformaService {
     public List<List<Article>> listeArticlesSelonBesoin(Besoin besoin){
         Besoinmodel besoinmodel=new Besoinmodel(besoin,besoin_produitRepository);
         List<Article> listeArticle= new ArrayList<>();
-        System.out.println("besoin : "+besoinmodel.getListeBesoin().size());
         List<List<Produit_Fournisseur>> pf = produit_fournisseurService.getNmeilleurPrix(besoin,1);
         List<Produit_Fournisseur> produitFournisseurs=new ArrayList<>();
         for (int i = 0; i < pf.size(); i++) {
             produitFournisseurs.addAll(pf.get(i));
         }
-        System.out.println("niiiiiii");
-        pf.forEach(System.out::println);
-        System.out.println("noooooo");
+
         for (int i = 0; i < produitFournisseurs.size(); i++) {
             for (int j = 0; j < besoinmodel.getListeBesoin().size(); j++) {
                 if(besoinmodel.getListeBesoin().get(j).getProduit().getId() == produitFournisseurs.get(i).getProduit().getId()){
@@ -57,7 +54,6 @@ public class ProformaService {
                 }
             }
         }
-
         Map<Long, List<Article>> groupedByFournisseurId = listeArticle.stream()
                 .sorted(Comparator.comparing(article -> article.getFournisseur().getId()))
                 .collect(Collectors.groupingBy(article -> article.getFournisseur().getId()));
@@ -66,11 +62,10 @@ public class ProformaService {
         List<List<Article>> sortedList = groupedByFournisseurId.values().stream()
                 .collect(Collectors.toList());
 
-        System.out.println("niou");
-        // Print the result
-        sortedList.forEach(System.out::println);
-        System.out.println("luio");
 
         return sortedList;
     }
+
+
+
 }

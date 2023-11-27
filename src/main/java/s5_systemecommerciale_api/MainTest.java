@@ -58,7 +58,7 @@ public class MainTest {
             produit.add(1L);
             produit.add(2L);
             produit.add(3L);
-            emailSenderService.sendMailToAllFournisseurs(fournisseur,produit);
+//            emailSenderService.sendMailToAllFournisseurs(fournisseur,produit);
 //            emailSenderService.sendMailWithAttachement("mytyrealy@gmail.com","mety le izyyy ", "kikouuuu","/Users/priscafehiarisoadama/Desktop/ville.shp");
 
         };

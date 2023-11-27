@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class PdfService {
     String text = "Bonjour , vous avez ci dessous la liste des produits pour le proforma ";
-    public String saveObjectsAsPdf(List<Produit> objectList, EntrepriseInformation entrepriseInformation, String filePath) throws IOException {
+    public String saveObjectsAsPdf(List<Produit> objectList,Fournisseur fournisseur, EntrepriseInformation entrepriseInformation, String filePath) throws IOException {
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
             document.addPage(page);
@@ -49,6 +49,12 @@ public class PdfService {
                 contentStream.showText("email: ");
                 contentStream.setFont(PDType1Font.HELVETICA, 8);
                 contentStream.showText( entrepriseInformation.getEmail());
+
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 8);
+                contentStream.showText("id du fournisseur: ");
+                contentStream.setFont(PDType1Font.HELVETICA, 8);
+                contentStream.showText(String.valueOf(fournisseur.getId()));
 
                 contentStream.newLineAtOffset(0, -40);
                 contentStream.setFont(PDType1Font.HELVETICA, 8);
@@ -133,9 +139,9 @@ public class PdfService {
         produits.add(new Produit(2L,"fromage", 0));
         produits.add(new Produit(3L,"THB", 0));
         PdfService pdfService=new PdfService();
-//        Fournisseur fournisseur= new Fournisseur(1L,"prisca", "lot III E 132 CT Fort Voyron","tel","prisca",200);200
+        Fournisseur fournisseur= new Fournisseur(1L,"prisca", "lot III E 132 CT Fort Voyron","tel","prisca",200,"mytyrealy@gmail.com");
         EntrepriseInformation entrepriseInformation= new EntrepriseInformation(1L,"Myty","mytyrealy@gmail.com","0347067949","Andoharanofotsy");
-        String pdfResource = pdfService.saveObjectsAsPdf(produits,entrepriseInformation, filePath);
+        String pdfResource = pdfService.saveObjectsAsPdf(produits,fournisseur,entrepriseInformation, filePath);
         System.out.println("=> "+pdfResource);
 
     }

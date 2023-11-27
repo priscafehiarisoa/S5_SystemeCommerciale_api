@@ -6,7 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
 import s5_systemecommerciale_api.repository.BesoinRepository;
+import s5_systemecommerciale_api.repository.Besoin_produitRepository;
 import s5_systemecommerciale_api.service.BesoinService;
 
 import java.time.Duration;
@@ -25,6 +27,8 @@ public class BesoinController {
 //    @PersistenceContext
 //    private EntityManager entityManager;
     private final RestTemplate restTemplate;
+    @Autowired
+    private Besoin_produitRepository besoin_produitRepository;
 
 
     public BesoinController(RestTemplateBuilder restTemplateBuilder) {
@@ -65,6 +69,11 @@ public class BesoinController {
     public List<Besoin> getAllDeletedBesoin()
     {
         return besoinRepository.getAllDeletedBesoin();
+    }
+
+    @GetMapping("/{id}")
+    public List<Besoin_produit> getBesoinIdByID(@PathVariable Long id){
+        return besoin_produitRepository.findAllByBesoin_Id(id);
     }
     @GetMapping("/BesoinEnCoursDeValidation")
     public List<Besoin> getAllBesoinEnCoursDeValidation()

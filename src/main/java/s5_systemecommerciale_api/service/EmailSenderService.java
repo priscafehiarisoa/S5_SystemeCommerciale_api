@@ -64,9 +64,9 @@ public class EmailSenderService {
 
      public void sendMailToFournisseur(List<Fournisseur> fournisseurs, List<Produit> produits) throws Exception {
          EntrepriseInformation entrepriseInformation= entreprseService.getEntrepriseInformation();
-         String pdfFile=pdfService.saveObjectsAsPdf(produits,entrepriseInformation,pdfPAth);
          MailStructure mailStructure=new MailStructure().getMailStructureForDemandeProforma(null,entrepriseInformation);
          for (int i = 0; i < fournisseurs.size(); i++) {
+             String pdfFile=pdfService.saveObjectsAsPdf(produits,fournisseurs.get(i),entrepriseInformation,pdfPAth);
              sendMailWithAttachement(fournisseurs.get(i).getEmail(),mailStructure ,pdfFile);
          }
      }
