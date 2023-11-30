@@ -26,9 +26,8 @@ public class FournisseurController {
 
 
     @PostMapping
-    public void insertFournisseur(@RequestBody Fournisseur fournisseur)
-    {
-        fournisseurService.addNewFournisseur(fournisseur);
+    public void insertFournisseur(@RequestBody Fournisseur fournisseur) throws Exception {
+            fournisseurService.addNewFournisseur(fournisseur);
     }
 
     @PutMapping("/{id}")

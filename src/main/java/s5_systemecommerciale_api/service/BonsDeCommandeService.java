@@ -27,7 +27,7 @@ public class BonsDeCommandeService {
 
     // creer un bons de commande
 
-    public List<BonsDeCommande> getAndSaveBonDeCommande(Besoin besoin){
+    public List<BonsDeCommande> getAndSaveBonDeCommande(Besoin besoin) throws Exception {
         List<BonsDeCommande> bonsDeCommandes=new ArrayList<>();
 
         List<List<Article>> prof=new ArrayList<>();

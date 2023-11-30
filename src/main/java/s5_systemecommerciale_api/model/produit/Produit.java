@@ -1,8 +1,12 @@
 package s5_systemecommerciale_api.model.produit;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE , generator ="produit_seq" )
@@ -11,6 +15,8 @@ public class Produit {
     Long id;
     String nomProduit;
     int etat;
+    @ManyToOne
+    UniteMesure unite;
 
     public Long getId() {
         return id;
@@ -59,6 +65,7 @@ public class Produit {
                 "id=" + id +
                 ", nomProduit='" + nomProduit + '\'' +
                 ", etat=" + etat +
+                ", unite=" + unite +
                 '}';
     }
 }
