@@ -1,57 +1,60 @@
 package s5_systemecommerciale_api.model.user;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import s5_systemecommerciale_api.model.elses.Service;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity
+@Data
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-
-
     private String name;
     private String email;
     private String password;
-    private String role;
+    private String poste;
+    @ManyToOne
+    @JoinColumn(name="idService")
+    private Service service;
 
-    public String getName() {
-        return name;
+    public void setEmail(String email) throws Exception {
+        if(checkEmail(email)) {
+            this.email = email;
+        }
+        else{
+            throw new Exception("email invalide ");
+        }
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean checkEmail(String email){
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    public Users(String name, String email, String password, String poste, Service service) throws Exception {
+        setName(name);
+        setEmail(email);
         this.password = password;
+        this.poste = poste;
+        this.service = service;
     }
 
-    public String getRole() {
-        return role;
+    public Users(Long id, String name, String email, String password, String poste, Service service) throws Exception {
+        this.id = id;
+        setName(name);
+        setEmail(email);
+        this.password = password;
+        this.poste = poste;
+        this.service = service;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public Users() {
     }
 }

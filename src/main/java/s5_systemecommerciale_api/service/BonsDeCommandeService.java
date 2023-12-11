@@ -10,6 +10,7 @@ import s5_systemecommerciale_api.repository.BonDeCommandeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BonsDeCommandeService {
@@ -50,6 +51,13 @@ public class BonsDeCommandeService {
             bonsDeCommandes.get(i).setListeArticles(bonsDeCommandeArticles);
         }
         return bonsDeCommandes;
+    }
+
+    //verification si un bons de commande spécifique Existe
+
+    public boolean checkExistenceBonDeCommande(Long id){
+        Optional<BonsDeCommande> bdc= bonDeCommandeRepository.findById(id);
+        return bdc.isPresent();
     }
 
 }

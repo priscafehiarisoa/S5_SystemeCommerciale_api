@@ -21,6 +21,8 @@ public interface BesoinRepository extends JpaRepository<Besoin,Long> {
     @Query(value = "select b from Besoin b where b.etat =10")
     List<Besoin>getAllBesoinValide();
 
+
+
     @Modifying
     @Transactional
     @Query(value = "update Besoin p set p.etat=-1 where p.id = :id")
