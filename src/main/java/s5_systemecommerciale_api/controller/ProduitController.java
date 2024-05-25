@@ -3,6 +3,7 @@ package s5_systemecommerciale_api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import s5_systemecommerciale_api.model.produit.Produit;
+import s5_systemecommerciale_api.model.produit.UniteMesure;
 import s5_systemecommerciale_api.repository.ProduitRepository;
 import s5_systemecommerciale_api.service.ProduitService;
 
@@ -54,6 +55,10 @@ public class ProduitController {
 
                 }
         );
+    }
+    @GetMapping("/unite")
+    public List<UniteMesure> getUniteMesure(){
+        return produitRepository.getUniteMesures();
     }
 }
 

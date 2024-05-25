@@ -2,6 +2,7 @@ package s5_systemecommerciale_api.service;
 
 import org.springframework.stereotype.Service;
 import s5_systemecommerciale_api.model.besoins.Besoin;
+import s5_systemecommerciale_api.model.besoins.Besoin_produit;
 import s5_systemecommerciale_api.model.besoins.Besoinmodel;
 import s5_systemecommerciale_api.model.fournisseur.Produit_Fournisseur;
 import s5_systemecommerciale_api.model.produit.Article;
@@ -38,7 +39,7 @@ public class ProformaService {
 //        return proforma;
 
 
-    public List<List<Article>> listeArticlesSelonBesoin(Besoin besoin){
+    public List<List<Article>> listeArticlesSelonBesoin(Besoin besoin) throws Exception {
         Besoinmodel besoinmodel=new Besoinmodel(besoin,besoin_produitRepository);
         List<Article> listeArticle= new ArrayList<>();
         List<List<Produit_Fournisseur>> pf = produit_fournisseurService.getNmeilleurPrix(besoin,1);
@@ -46,6 +47,9 @@ public class ProformaService {
         for (int i = 0; i < pf.size(); i++) {
             produitFournisseurs.addAll(pf.get(i));
         }
+
+        // eto no tokony hicheck an'le izy ....
+        checkProforma(besoinmodel.getListeBesoin(),produitFournisseurs);
 
         for (int i = 0; i < produitFournisseurs.size(); i++) {
             for (int j = 0; j < besoinmodel.getListeBesoin().size(); j++) {
@@ -64,6 +68,20 @@ public class ProformaService {
 
 
         return sortedList;
+    }
+
+    public void checkProforma(List<Besoin_produit> besoinProduits, List<Produit_Fournisseur> produitFournisseurs) throws Exception {
+        for (int i = 0; i < besoinProduits.size(); i++) {
+            int check =0;
+            for (int j = 0; j < produitFournisseurs.size(); j++) {
+                if(besoinProduits.get(i).getProduit().getId()==produitFournisseurs.get(j).getProduit().getId()){
+                    check++;
+                }
+            }
+            if(check==0){
+                throw new Exception("le produit "+besoinProduits.get(i).getProduit().getNomProduit() + " n'a pas de proforma valide");
+            }
+        }
     }
 
 

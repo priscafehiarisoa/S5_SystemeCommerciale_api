@@ -18,9 +18,9 @@ public class FournisseurService {
         return fournisseurRepository.findAll();
     }
 
-    public void addNewFournisseur(Fournisseur fournisseur){
+    public void addNewFournisseur(Fournisseur fournisseur) throws Exception {
         Fournisseur  f2 = new Fournisseur(fournisseur.getNom_fournisseur(), fournisseur.getAdresse(), fournisseur.getTelephone(),fournisseur.getNom_responsable(),fournisseur.getPrix_livraison(), fournisseur.getEmail() );
-        fournisseurRepository.save(fournisseur);
+        fournisseurRepository.save(f2);
     }
 
     public void deleteFournisseur(long id) throws IllegalAccessException {

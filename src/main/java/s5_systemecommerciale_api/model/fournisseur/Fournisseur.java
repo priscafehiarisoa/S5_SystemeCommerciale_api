@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Entity
 @Getter
@@ -19,16 +21,17 @@ public class Fournisseur {
     Long id;
 
     String nom_fournisseur;
-    String Adresse;
+    String adresse;
     String telephone;
     String nom_responsable;
     double prix_livraison;
+
     String email;
 //
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fournisseur", cascade = CascadeType.ALL)
 //    List<Produit_Fournisseur> produitFournisseurs;
 
-    public Fournisseur(Long id, String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison, String email) {
+    public Fournisseur(Long id, String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison, String email) throws Exception {
         setId(id);
         setNom_fournisseur(nom_fournisseur);
         setAdresse(adresse);
@@ -38,7 +41,7 @@ public class Fournisseur {
         setEmail(email);
     }
 
-    public Fournisseur(String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison,String email) {
+    public Fournisseur(String nom_fournisseur, String adresse, String telephone, String nom_responsable, double prix_livraison,String email) throws Exception {
         setNom_fournisseur(nom_fournisseur);
         setAdresse(adresse);
         setTelephone(telephone);
@@ -50,20 +53,37 @@ public class Fournisseur {
     public Fournisseur() {
     }
 
-//    public List<Produit_Fournisseur> getProduitFournisseurs() {
-//        return produitFournisseurs;
-//    }
-//
-//    public void setProduitFournisseurs(List<Produit_Fournisseur> produitFournisseurs) {
-//        this.produitFournisseurs = produitFournisseurs;
-//    }
+    public void setEmail(String email) throws Exception {
+        if(checkEmailValid(email)){
+            this.email = email;
+        }
+        else{
+            throw new Exception("email non valide");
+        }
+
+    }
+
+    public static boolean checkEmailValid(String email) {
+        // Expression régulière pour la validation d'une adresse e-mail
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
+
+        // Créer un objet Pattern
+        Pattern pattern = Pattern.compile(emailRegex);
+
+        // Créer un objet Matcher avec l'adresse e-mail en argument
+        Matcher matcher = pattern.matcher(email);
+
+        // Vérifier si l'adresse e-mail correspond à l'expression régulière
+        return matcher.matches();
+    }
+
 
     @Override
     public String toString() {
         return "Fournisseur{" +
                 "id=" + id +
                 ", nom_fournisseur='" + nom_fournisseur + '\'' +
-                ", Adresse='" + Adresse + '\'' +
+                ", Adresse='" + adresse + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", nom_responsable='" + nom_responsable + '\'' +
                 ", prix_livraison=" + prix_livraison +
@@ -92,8 +112,6 @@ public class Fournisseur {
         {
             System.out.println(e.getMessage());
         }
-
-
 
     }
 }

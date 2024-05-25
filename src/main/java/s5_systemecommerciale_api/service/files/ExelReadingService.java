@@ -82,7 +82,9 @@ public class ExelReadingService {
                 switch (columnIndex) {
                     case 0:
                         System.out.println(getCellValue(nextCell));
-                        Long idProduit =  Math.round((Double)getCellValue(nextCell));
+                        String value= (String) getCellValue(nextCell);
+                        System.out.println(value);
+                        Long idProduit =  Long.valueOf(value);
                         Optional<Produit> p = produitRepository.findById(idProduit);
                         if (p.isPresent()) {
                             fournisseurP.setProduit(p.get());
@@ -94,25 +96,25 @@ public class ExelReadingService {
                         break;
                     case 2:
                         System.out.println(getCellValue(nextCell));
-                        fournisseurP.setTaxe((Double) getCellValue(nextCell));
+                        fournisseurP.setTaxe((String) getCellValue(nextCell));
                         System.out.println("--");
                         break;
 
                     case 3:
                         System.out.println(getCellValue(nextCell));
-                        fournisseurP.setDelaiDeLivraison((Double) getCellValue(nextCell));
+                        fournisseurP.setDelaiDeLivraison((String) getCellValue(nextCell));
                         System.out.println("--");
                         break;
 
                     case 4:
                         System.out.println(getCellValue(nextCell));
-                        fournisseurP.setPrixHorsTaxe((Double) getCellValue(nextCell));
+                        fournisseurP.setPrixHorsTaxe(Double.parseDouble((String) getCellValue(nextCell)));
                         System.out.println("--");
                         break;
 
                     case 5:
                         System.out.println(getCellValue(nextCell));
-                        fournisseurP.setQuantiteStock((Double) getCellValue(nextCell));
+                        fournisseurP.setQuantiteStock(Double.parseDouble((String) getCellValue(nextCell)));
                         System.out.println("--");
                         break;
 

@@ -132,7 +132,7 @@ public class PdfService {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         String filePath = "./produit.pdf"; // Replace with the actual path
         List<Produit> produits=new ArrayList<>();
         produits.add(new Produit(1L,"biscuit", 0));
