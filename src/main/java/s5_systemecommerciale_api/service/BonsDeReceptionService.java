@@ -4,9 +4,8 @@ import org.springframework.stereotype.Service;
 import s5_systemecommerciale_api.model.BonsDeReception.BonsDeReception;
 import s5_systemecommerciale_api.model.BonsDeReception.DetailsBonsReception;
 import s5_systemecommerciale_api.model.Factures.FactureFournisseur;
-import s5_systemecommerciale_api.model.bonDeCommande.BonsDeCommande;
 import s5_systemecommerciale_api.repository.BonsDeReceptionRepository;
-import s5_systemecommerciale_api.repository.DetailBDR_Repository;
+import s5_systemecommerciale_api.repository.DetailsBonsReceptionRepository;
 import s5_systemecommerciale_api.repository.FactureFournisseurRepository;
 
 import java.util.List;
@@ -15,14 +14,15 @@ import java.util.List;
 public class BonsDeReceptionService {
     private final FactureFournisseurRepository factureFournisseurRepository;
     private final BonsDeReceptionRepository bonsDeReceptionRepository;
-    private final DetailBDR_Repository detailBDR_Repository;
     private final BonsDeCommandeService bonsDeCommandeService;
+    private final DetailsBonsReceptionRepository detailsBonsReceptionRepository;
 
-    public BonsDeReceptionService(FactureFournisseurRepository factureFournisseurRepository, BonsDeReceptionRepository bonsDeReceptionRepository1, DetailBDR_Repository detailBDR_Repository,BonsDeCommandeService bonsDeCommandeService) {
+    public BonsDeReceptionService(FactureFournisseurRepository factureFournisseurRepository, BonsDeReceptionRepository bonsDeReceptionRepository1, BonsDeCommandeService bonsDeCommandeService,
+                                  DetailsBonsReceptionRepository detailsBonsReceptionRepository) {
         this.factureFournisseurRepository = factureFournisseurRepository;
         this.bonsDeReceptionRepository = bonsDeReceptionRepository1;
-        this.detailBDR_Repository = detailBDR_Repository;
         this.bonsDeCommandeService = bonsDeCommandeService;
+        this.detailsBonsReceptionRepository = detailsBonsReceptionRepository;
     }
 
     public void saveBonsDeReception(BonsDeReception bonsDeReception, FactureFournisseur factureFournisseur, List<DetailsBonsReception> detailsBonsReceptionList){
@@ -34,7 +34,7 @@ public class BonsDeReceptionService {
         // ajouter le bons de récéption au detail de bdr
         for (int i = 0; i < detailsBonsReceptionList.size(); i++) {
             detailsBonsReceptionList.get(i).setBonsDeReception(bonsDeReception);
-            detailBDR_Repository.save(detailsBonsReceptionList.get(i));
+            detailsBonsReceptionRepository.save(detailsBonsReceptionList.get(i));
         }
     }
 }

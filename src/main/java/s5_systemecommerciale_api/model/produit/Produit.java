@@ -18,6 +18,13 @@ public class Produit {
     @ManyToOne
     UniteMesure unite;
 
+    /**
+     * 0 = fifo
+     * 1 = lifo
+     * 2 = cump (fifo )*/
+
+    int typeSortie;
+
     public Long getId() {
         return id;
     }

@@ -34,7 +34,7 @@ public class Produit_Fournisseur {
     double prixHorsTaxe;
     double quantiteStock;
 
-    public Produit_Fournisseur(Long id, Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double quantiteStock) {
+    public Produit_Fournisseur(Long id, Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double quantiteStock,double prixHorsTaxe) {
         setId(id);
         setFournisseur(fournisseur);
         setProduit(produit);
@@ -43,7 +43,9 @@ public class Produit_Fournisseur {
         setEtat(etat);
         setDate(date);
         setQuantiteStock(quantiteStock);
+        setPrixHorsTaxe(prixHorsTaxe);
     }
+
 
     public Produit_Fournisseur(Fournisseur fournisseur, Produit produit, double taxe, double delaiDeLivraison, int etat, Timestamp date,double prixHorsTaxe,double quantiteStock) {
         setFournisseur(fournisseur);

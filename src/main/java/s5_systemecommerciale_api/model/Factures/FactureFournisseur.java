@@ -9,6 +9,12 @@ import s5_systemecommerciale_api.repository.FournisseurRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * etat
+ * 0=en cours
+ * 10=validé finance
+ * 20= validé daf */
+
 @Data
 @Entity
 public class FactureFournisseur {
@@ -24,6 +30,8 @@ public class FactureFournisseur {
     private double totalPrixHT;
     private LocalDateTime dateFacture;
     private String nomDuFichierFActure;
+    private int etat=0;
+
 
     public FactureFournisseur() {
 

@@ -17,6 +17,7 @@ public class BonsDeCommandeArticle {
     @Column(name = "id_BC_Article", nullable = false)
     private Long id;
 
+    private Long idProduit;
     private String designation;
     private double quantite;
     private double prixHorsTaxe;
@@ -45,6 +46,7 @@ public class BonsDeCommandeArticle {
         setIdBonDeCommande(bonsDeCommande.getId_bonsDeCommande());
         setDesignation(article.getDesignation());
         setQuantite(article.getQuantite());
+        setIdProduit(article.getProduit().getId());
         setPrixHorsTaxe(article.getPrixHorsTaxe());
         setPrixTTC(article.getPrixTTC());
         setPrixUnitaire(article.getPrixUnitaire());
